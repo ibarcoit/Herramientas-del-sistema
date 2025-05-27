@@ -77,7 +77,7 @@ powershell
 - Auditoría profesional completa: info.ps1
 
 ## ⚠️ Requisitos
-- Windows 7 o superior
+- Windows 10 o superior
 - PowerShell 5.1+ (para scripts PS)
 - Privilegios de administrador (para funcionalidad completa)
 
