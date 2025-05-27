@@ -1,45 +1,88 @@
-### 📌 Script: info.ps1
+# Scripts de Diagnóstico para Windows
 
+Colección de scripts PowerShell y Batch para monitoreo y diagnóstico de sistemas Windows.
+
+## 📂 Archivos de Scripts
+
+### 1. check_net.ps1
 **Descripción**:  
-Versión mejorada del script batch, escrito en PowerShell, que recopila información completa del sistema y configuración de red.
+Muestra usuarios conectados (locales/remotos) y unidades de red mapeadas.
 
-**Funcionalidades**:
-- **Hardware**:
-  - Placa base, BIOS, equipo principal
-  - Discos duros (con interfaz de conexión)
-  - Memoria RAM (módulos individuales con velocidad)
-  - Procesador (núcleos, hilos, velocidad)
-  
-- **Sistema**:
-  - Sistema operativo (versión, arquitectura, fecha instalación)
-  - Antivirus (nombre, estado)
-  
-- **Red**:
-  - Tarjetas de red activas (MAC, velocidad)
-  - Configuración IP (IPv4, máscara, gateway, DNS)
+**Características**:
+- Sesiones de usuarios locales (nombre, ID, estado, tiempo inactivo)
+- Conexiones remotas RDP/Terminal Services
+- Unidades de red con estadísticas de uso
+- Usa comandos nativos: query user, qwinsta, Get-PSDrive
+
+**Uso**:
+powershell
+.\check_net.ps1
+
+
+### 2. info.bat
+**Descripción**:  
+Inventario básico de hardware (versión Batch).
+
+**Características**:
+- Información de placa base y BIOS
+- Discos (modelo, serial, capacidad)
+- Memoria RAM (capacidad total)
+- Procesador (modelo)
+- Versión del sistema operativo
+- Antivirus instalado
+- Usa comandos WMIC para máxima compatibilidad
+
+**Uso**:
+cmd
+info.bat
+
+
+### 3. info.ps1
+**Descripción**:  
+Reporte avanzado de sistema y red (versión PowerShell).
+
+**Características mejoradas**:
+- Inventario detallado de hardware (incluyendo módulos RAM individuales)
+- Configuración completa de red:
+  - Adaptadores (MAC, velocidad)
+  - Configuración IP (dirección, gateway, DNS)
   - Tabla de rutas
-  - Conexiones TCP establecidas
+  - Conexiones TCP activas
+- Información del sistema operativo
+- Formato profesional con manejo de errores
+- Guarda resultados en archivo de texto en el escritorio
 
-**Mejoras respecto a la versión batch**:
-- Información más detallada y mejor formateada
-- Manejo robusto de errores
-- Información de red completa
-- Compatibilidad con PowerShell ISE y consola normal
-- Genera el reporte en el escritorio del usuario
+**Uso**:
+powershell
+.\info.ps1
 
-**Tecnologías utilizadas**:
-- Cmdlets de CIM (Common Information Model)
-- Cmdlets de red de PowerShell (`Get-NetAdapter`, `Get-NetIPConfiguration`)
-- Formateo profesional de salida
-- Manejo avanzado de errores
 
-**Requisitos**:
-- PowerShell 5.1 o superior
-- Ejecución como Administrador para información completa
-- Módulos de red de PowerShell habilitados
+## 🔍 Comparativa de Funcionalidades
 
-**Uso típico**:
-- Auditoría completa de sistemas
-- Solución de problemas de red
-- Documentación técnica detallada
-- Inventario de activos TI
+| Función                | check_net.ps1 | info.bat | info.ps1 |
+|------------------------|---------------|----------|----------|
+| Sesiones de usuario    | ✅            | ❌       | ❌       |
+| Unidades de red        | ✅            | ❌       | ✅       |
+| Info básica de hardware | ❌            | ✅       | ✅       |
+| Info detallada de hardware | ❌       | ❌       | ✅       |
+| Configuración de red   | ❌            | ❌       | ✅       |
+| Requiere admin         | Opcional      | Sí       | Sí       |
+| Formato de salida      | Consola       | Texto    | Texto    |
+| Requiere PowerShell    | ✅            | ❌       | ✅       |
+
+## 🚀 Casos de Uso Recomendados
+
+- Verificación rápida de sesiones: check_net.ps1
+- Sistemas legacy (sin PowerShell): info.bat
+- Auditoría profesional completa: info.ps1
+
+## ⚠️ Requisitos
+- Windows 7 o superior
+- PowerShell 5.1+ (para scripts PS)
+- Privilegios de administrador (para funcionalidad completa)
+
+## 📝 Notas Adicionales
+- Los scripts PowerShell ofrecen información más detallada
+- info.ps1 es la versión recomendada para sistemas modernos
+- Todos los scripts incluyen manejo básico de errores
+- Los resultados se muestran en pantalla y/o guardan en archivo
