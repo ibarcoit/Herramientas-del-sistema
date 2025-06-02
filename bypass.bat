@@ -1,18 +1,7 @@
 @echo off
-:: Script para ejecutar archivos PS1 desde su ubicación actual
-:: Versión corregida para Windows 10/11 y sistemas legacy
-
-title Ejecutor de scripts PowerShell
-color 0A
-
-:: Verificar si PowerShell está disponible
-where powershell >nul 2>&1
-if %errorlevel% neq 0 (
-    echo.
-    echo ERROR: PowerShell no está instalado o no está en el PATH.
-    pause
-    exit /b
-)
+:: Obtener la ruta donde está este script batch
+set "batch_path=%~dp0"
+cd /d "%batch_path%"
 
 :inicio
 cls
@@ -22,6 +11,8 @@ echo ****************************************
 echo.
 echo Directorio actual: %CD%
 echo.
+
+:: Mostrar scripts en el directorio del batch
 dir /b *.ps1 2>nul
 echo.
 
